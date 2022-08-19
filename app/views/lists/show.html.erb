@@ -4,6 +4,10 @@
     <%= @list.name %>
   </p>
 
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class='list-group-item'><%= bookmark.comment %> <%= "Title: #{bookmark.movie.title}" %> <%= "Rating: #{bookmark.movie.rating}" %>
+  <% end %>
+
 
 <%= link_to "Add a Movie",  new_list_bookmark_path(@list), class: 'btn btn-primary mt-3' %>
 <p><%= link_to "Back to Lists", lists_path, class: 'btn btn-primary mt-3' %></p>
