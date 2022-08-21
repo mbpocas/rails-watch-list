@@ -1,7 +1,16 @@
-<h1>Create a new list</h1>
-  <div class="container">
+<div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('list_background.jpg') %>)">
+  <div class="cover mb-4 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+      <h1 class='mt-5'>Add a new list</h1>
+    </div>
+  </div>
+</div>
+
+  <div class="container mt-5">
         <%= simple_form_for @list do |f| %>
           <%= f.input :name %>
-          <%= f.submit class: 'btn btn-primary' %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit class: 'btn btn-outline-dark mt-3' %>
+          <%= link_to "Back to Lists", lists_path, class: 'btn btn-outline-dark mt-3' %>
         <% end %>
   </div>

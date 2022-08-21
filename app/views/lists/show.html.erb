@@ -1,13 +1,48 @@
-<p style="color: green"><%= notice %></p>
-<p>
-    <strong>LISTS:</strong>
-    <%= @list.name %>
-  </p>
+<div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('list_background.jpg') %>)">
+  <div class="cover mb-4 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+      <h1 class='mt-5'><%= @list.name %></h1>
+    </div>
+  </div>
+</div>
 
-  <% @list.bookmarks.each do |bookmark| %>
-    <li class='list-group-item'><%= bookmark.comment %> <%= "Title: #{bookmark.movie.title}" %> <%= "Rating: #{bookmark.movie.rating}" %>
-  <% end %>
+<div class='button mb-5'>
+  <%= link_to "Add a Movie",  new_list_bookmark_path(@list), class: 'btn btn-outline-dark mt-3' %>
+  <%= link_to "Back to Lists", lists_path, class: 'btn btn-outline-dark mt-3' %>
+  <%= link_to "Delete this list", list_path(@list), class: "btn btn-outline-dark mt-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %>
+</div>
 
+<div class="container mb-5">
 
-<%= link_to "Add a Movie",  new_list_bookmark_path(@list), class: 'btn btn-primary mt-3' %>
-<p><%= link_to "Back to Lists", lists_path, class: 'btn btn-primary mt-3' %></p>
+  <div class="text-center">
+    <% if @list.photo.attached? %>
+        <div class='img-show-list'>
+          <%= cl_image_tag @list.photo.key, :width=>200, :height=>200, :radius=>"max",:background=>"#a2a0b2", :crop=>"fill" %>
+        </div>
+    <% else %>
+      <span class="mb-2 d-block"><small><em class="text-muted">No Picture List!</em></small></span>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-around my-4">
+    <% if @list.movies.empty? %>
+      <span class="mb-2 d-block"><strong><em class="text-muted">"You haven't saved any movies yet!"</em></strong></span>
+    <% else %>
+      <span class="mb-2 d-block"><strong><em class="text-muted">You have <%= pluralize(@list.movies.size, "movie") %> in your List.</em></strong></span>
+    <% end %>
+  </div>
+
+<div class='card-area'>
+    <% @list.bookmarks.each do |bookmark| %>
+    <div class='card-movie'>
+      <%=image_tag bookmark.movie.poster_url, class:'card-movie-photo' %>
+          <div class='info-card p-2'>
+              <p><strong><%= bookmark.movie.title %></strong></p>
+              <p><strong>Rating: </strong><%= bookmark.movie.rating  %></p>
+              <p><strong>Overview: </strong><%= bookmark.movie.overview  %></p>
+              <p><strong>Comment: </strong><%= bookmark.comment %></p>
+          </div>
+        </div>
+      <% end %>
+
+</div>
