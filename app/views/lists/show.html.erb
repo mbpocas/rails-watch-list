@@ -34,13 +34,14 @@
 
 <div class='card-area'>
     <% @list.bookmarks.each do |bookmark| %>
-    <div class='card-movie'>
+    <div class='card-movie mb-4'>
       <%=image_tag bookmark.movie.poster_url, class:'card-movie-photo' %>
           <div class='info-card p-2'>
               <p><strong><%= bookmark.movie.title %></strong></p>
               <p><strong>Rating: </strong><%= bookmark.movie.rating  %></p>
               <p><strong>Overview: </strong><%= bookmark.movie.overview  %></p>
               <p><strong>Comment: </strong><%= bookmark.comment %></p>
+              <%= link_to '',list_path(@list), class: "fa-solid fa-trash-can", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this movie from your #{@list.name} list?"} %>
           </div>
         </div>
       <% end %>

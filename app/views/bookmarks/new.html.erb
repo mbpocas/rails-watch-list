@@ -1,3 +1,12 @@
+<div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('list_background.jpg') %>)">
+  <div class="cover mb-4 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+      <h1 class='mt-5'>Add a movie</h1>
+    </div>
+  </div>
+</div>
+
+
 <div class="container py-5">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
@@ -8,8 +17,9 @@
           <%= f.input :comment %>
           <%= f.association :movie, prompt: "Select a movie", input_html: { data: { controller: "select" } }%>
           <%= f.submit class:'btn btn-outline-dark' %>
+          <%= link_to "Back to Lists", lists_path, class: 'btn btn-outline-dark' %>
         <% end %>
-       
+
       </div>
     </div>
   </div>

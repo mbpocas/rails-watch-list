@@ -31,10 +31,12 @@
   background-color: rgb(190, 190, 190);
   box-sizing: border-box;
   width: 300px;
-  height: 250px;
+  height: 260px;
 }
 
 .card-area{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+
 }
