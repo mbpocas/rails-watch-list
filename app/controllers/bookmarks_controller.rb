@@ -21,6 +21,7 @@ class BookmarksController < ApplicationController
     redirect_to list_path(@bookmark.list), status: :see_other
   end
 
+
   private
 
   def bookmark_params
